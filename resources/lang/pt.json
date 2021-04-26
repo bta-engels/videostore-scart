@@ -1,0 +1,25 @@
+{
+    "Category": "Categoria",
+    "Sorry, no data available": "Dados indisponíveis",
+    "Movies": "Filmes",
+    "Movie": "Filme",
+    "Authors": "Autores",
+    "Add to shopping cart": "Adicionar ao carrinho",
+    "Firstname": "Nome",
+    "Lastname": "Sobrenome",
+    "is required": "campo obrigatório",
+    "length must between :min and :max": "deve ter entre :min e :max caracteres",
+    "My Video Store": "Minha loja de vídeo",
+    "shopping cart": "Carrinho de compras",
+    "Author": "Autor",
+    "Title": "Título",
+    "Price": "Preco",
+    "Delete": "Deletar",
+    "Save": "Salvar",
+    "Create": "Criar",
+    "Year": "Ano",
+    "Show": "Detalhes",
+    "Edit": "Editar",
+    "Create New": "Criar novo"
+
+}

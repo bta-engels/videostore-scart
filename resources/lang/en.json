@@ -1,0 +1,12 @@
+{
+  "Category": "Category",
+  "Sorry, no data available": "Sorry, no data available",
+  "Movies": "Movies",
+  "Authors": "Authors",
+  "Add to shopping cart": "Add to shopping cart",
+  "Firstname": "Firstname",
+  "Lastname": "Lastname",
+  "is required": "is required",
+  "length must between :min and :max": "length must between :min and :max",
+  "Shopping cart": "Shopping cart"
+}

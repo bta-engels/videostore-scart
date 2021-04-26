@@ -1,0 +1,13 @@
+{
+    "My Video Store": "Mi Tienda de Videos",
+    "Category": "Categoria",
+    "Sorry, no data available": "Lamentablemente no hay datos",
+    "Movies": "Peliculas",
+    "Authors": "Autor",
+    "Add to shopping cart": "Añadir a la cesta",
+    "Firstname": "Nombre",
+    "Lastname": "Apellido",
+    "is required": "campo obligatorio",
+    "length must between :min and :max": "debe tener al meno :min y al máximo :max largura!",
+    "Shopping cart": "Cesta"
+}

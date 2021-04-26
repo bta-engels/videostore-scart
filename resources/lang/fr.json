@@ -1,0 +1,25 @@
+{
+    "Category": "Catégorie",
+    "Sorry, no data available": "Aucune donnée disponible",
+    "Movies": "Films",
+    "Movie": "Film",
+    "Authors": "Auteurs",
+    "Add to shopping cart": "Ajouter au panier",
+    "Firstname": "Prénom",
+    "Lastname": "Nom",
+    "is required": "champ requis",
+    "length must between :min and :max": "doit etre au moins :min et maximum :max de longueur!",
+    "My Video Store": "Mon magasin de video",
+    "Shopping cart": "Panier",
+    "Author": "Auteur",
+    "Title": "Titre",
+    "Price": "Prix",
+    "Delete": "Supprimer",
+    "Save": "Sauvegarder",
+    "Create": "Créer",
+    "Year": "Année",
+    "Show": "Details",
+    "Edit": "Modifier",
+    "Create New": "Insérer"
+
+}

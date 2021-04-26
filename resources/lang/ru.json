@@ -1,0 +1,22 @@
+{
+  "Category": "Категория",
+  "Authors": "Aвтор",
+  "Title": "Название",
+  "Sorry, no data available": "Извините, но данные не доступны",
+  "Movie": "Фильм",
+  "Movies": "Фильмы",
+  "Add to shopping cart": "Добавлено в корзину",
+  "Firstname": "Имя",
+  "Lastname": "Фамилия",
+  "is required": "выполнено успешно",
+  "length must between :min and :max": "длинна должна быть :минимум и :максимум символов",
+  "Shopping cart": "Корзина",
+  "Create New": "Создать новое",
+  "Year": "Год",
+  "Delete": "Удалить",
+  "Show":"Показать",
+  "Edit": "Изменить",
+  "Login": "Войти",
+  "Register": "Зарегистрироватся"
+
+}

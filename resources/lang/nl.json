@@ -1,0 +1,13 @@
+{
+    "My Video Store": "Mijn Video Winkel",
+    "Category": "Kategorie",
+    "Sorry, no data available": "Helaas geen data beschikbaar",
+    "Movies": "Filmen",
+    "Authors": "Schrijvers",
+    "Add to shopping cart": "naar het mandje toevoegen",
+    "Firstname": "Naam",
+    "Lastname": "Achternaam",
+    "is required": "Plichtveld",
+    "length must between :min and :max": "moet tenminst :min en mag niet meer dan max. :max lengte hebben!",
+    "Shopping cart": "Mandje"
+}
