@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Models\Scard;
+use App\Models\Scart;
 
 class MovieController extends Controller
 {
@@ -13,7 +13,7 @@ class MovieController extends Controller
 
     public function show( $id ) {
         $data = Movie::whereId($id)->first();
-        $added = Scard::where([
+        $added = Scart::where([
             'session_id'    => session()->getId(),
             'movie_id'      => $id,
         ])->pluck('quantity')->first();

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiLoginController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,19 +14,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('login', [ApiLoginController::class, 'login']);
 
-Route::group([
-    'middleware' => 'api',
-    'namespace' => 'API',
-    'prefix' => 'auth',
-], function () {
-        Route::post('login', 'ApiAuthController@login');
-        Route::post('logout', 'ApiAuthController@logout');
-        Route::post('refresh', 'ApiAuthController@refresh');
-        Route::post('me', 'ApiAuthController@me');
-});
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 

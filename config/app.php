@@ -171,12 +171,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /*
-         * additional services
-         */
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        Abrigham\LaravelEmailExceptions\EmailExceptionsServiceProvider::class,
     ],
 
     /*

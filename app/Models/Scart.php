@@ -17,22 +17,22 @@ use Illuminate\Support\Carbon;
  * @property int $quantity
  * @property Carbon $created_at
  * @property Carbon|null $updated_at
- * @method static Builder|Scard newModelQuery()
- * @method static Builder|Scard newQuery()
- * @method static Builder|Scard query()
- * @method static Builder|Scard whereCreatedAt($value)
- * @method static Builder|Scard whereId($value)
- * @method static Builder|Scard whereMovieId($value)
- * @method static Builder|Scard whereQuantity($value)
- * @method static Builder|Scard whereSessionId($value)
- * @method static Builder|Scard whereUpdatedAt($value)
+ * @method static Builder|Scart newModelQuery()
+ * @method static Builder|Scart newQuery()
+ * @method static Builder|Scart query()
+ * @method static Builder|Scart whereCreatedAt($value)
+ * @method static Builder|Scart whereId($value)
+ * @method static Builder|Scart whereMovieId($value)
+ * @method static Builder|Scart whereQuantity($value)
+ * @method static Builder|Scart whereSessionId($value)
+ * @method static Builder|Scart whereUpdatedAt($value)
  * @mixin Eloquent
  * @property-read Movie $movie
  * @property-read mixed $sum_price
  */
-class Scard extends Model
+class Scart extends Model
 {
-    protected $table = 'scard';
+    protected $table = 'scart';
     protected $fillable = ['session_id','movie_id','quantity'];
     protected $dates = ['created_at'];
     protected $appends = ['sum_price'];

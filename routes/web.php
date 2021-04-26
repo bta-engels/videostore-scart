@@ -1,15 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ScartController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\AdminMovieController;
+use App\Http\Controllers\Admin\AdminAuthorController;
+use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\DashboardAdminController;
 
 Auth::routes();
 Route::get('lang/{lang}', 'LanguageController@switchLang')->name('lang.switch');
@@ -17,18 +17,18 @@ Route::get('lang/{lang}', 'LanguageController@switchLang')->name('lang.switch');
 Route::domain(env('APP_DOMAIN'))
     ->group( function () {
         // public stuff
-        Route::get('/movie', 'MovieController@index')->name('movie.index');
-        Route::get('/movie/show/{id}', 'MovieController@show')->name('movie.show');
-        Route::get('/scard', 'ScardController@index')->name('scard.index');
-        Route::post('/scard/update/{id}', 'ScardController@update')->name('scard.update');
-        Route::post('/scard/destroy/{id}', 'ScardController@destroy')->name('scard.destroy');
-        Route::post('/scard/increment/{id}', 'ScardController@increment')->name('scard.increment');
-        Route::post('/scard/decrement/{id}', 'ScardController@decrement')->name('scard.decrement');
+        Route::get('/movie', [MovieController::class, 'index'])->name('movie.index');
+        Route::get('/movie/show/{id}', [MovieController::class, 'show'])->name('movie.show');
+        Route::get('/scart', [ScartController::class, 'index'])->name('scart.index');
+        Route::post('/scart/update/{id}', [ScartController::class, 'update'])->name('scart.update');
+        Route::post('/scart/destroy/{id}', [ScartController::class, 'destroy'])->name('scart.destroy');
+        Route::post('/scart/increment/{id}', [ScartController::class, 'increment'])->name('scart.increment');
+        Route::post('/scart/decrement/{id}', [ScartController::class, 'decrement'])->name('scart.decrement');
 
-        Route::get('/author', 'AuthorController@index')->name('author.index');
-        Route::get('/author/show/{id}', 'AuthorController@show')->name('author.show');
+        Route::get('/author', [AuthorController::class, 'index'])->name('author.index');
+        Route::get('/author/show/{id}', [AuthorController::class, 'show'])->name('author.show');
 
-        Route::post('/order/store', 'OrderController@store')->name('order.store');
+        Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 
         Route::redirect('/', '/movie');
     });
@@ -37,7 +37,7 @@ Route::domain(env('APP_ADMIN_DOMAIN'))
     ->namespace('Admin')
     ->group( function () {
     // admin stuff
-        Route::get('/', 'DashboardAdminController')->name('admin.dashboard');
+        Route::get('/', [DashboardAdminController::class])->name('admin.dashboard');
 
         Route::get('/movie', 'AdminMovieController@index')->name('admin-movie.index');
         Route::get('/movie/show/{id}', 'AdminMovieController@show')->name('admin-movie.show');

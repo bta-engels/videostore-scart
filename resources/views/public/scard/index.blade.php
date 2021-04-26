@@ -24,11 +24,11 @@
                                     <td>{{ $item->movie->price }} </td>
                                     <td>{{ $item->quantity }} </td>
                                     <td>{{ $item->sumPrice }} €</td>
-                                    <td><form class="d-inline m-0 p-0" action="{{ route( 'scard.increment', ['id' => $item->id]) }}" method="post">
+                                    <td><form class="d-inline m-0 p-0" action="{{ route( 'scart.increment', ['id' => $item->id]) }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-link m-0 p-0 small" role="link"><i class="fas fa-plus"></i></button>
                                         </form></td>
-                                    <td><form class="d-inline m-0 p-0" action="{{ route( 'scard.decrement', ['id' => $item->id]) }}" method="post">
+                                    <td><form class="d-inline m-0 p-0" action="{{ route( 'scart.decrement', ['id' => $item->id]) }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-link m-0 p-0 small" role="link"><i class="fas fa-minus"></i></button>
                                         </form></td>

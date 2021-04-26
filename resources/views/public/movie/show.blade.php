@@ -7,7 +7,7 @@
                 <div class="row card-header w-100">
                     <h3>{{ $data->title }}</h3>
                     <form class="position-absolute d-block" style="right:3.0rem"
-                              action="{{ route('scard.update', ['id' => $data->id]) }}"
+                              action="{{ route('scart.update', ['id' => $data->id]) }}"
                               method="post"
                         >
                         @csrf

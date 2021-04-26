@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\MovieOrdered;
-use App\Http\Requests\CustomerRequest;
 use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Scard;
+use App\Models\Scart;
 use App\Models\Customer;
+use App\Events\MovieOrdered;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Requests\OrderRequest;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CustomerRequest;
 
 class OrderController extends Controller
 {
@@ -30,16 +27,16 @@ class OrderController extends Controller
             $customer = Customer::create($validated);
         }
 
-        $scard      = Scard::whereSessionId( session()->getId() )->get();
-        $scardIds   = [];
+        $scart      = Scart::whereSessionId( session()->getId() )->get();
+        $scartIds   = [];
         $orderItemData = [];
         $priceTotal = 0;
 
-        if($scard->count()) {
+        if($scart->count()) {
             $order = new Order();
 
-            foreach ($scard as $item) {
-                $scardIds[] = $item->id;
+            foreach ($scart as $item) {
+                $scartIds[] = $item->id;
                 $orderItemData[] = [
                     'movie_id'      => $item->movie_id,
                     'quantity'      => $item->quantity,
@@ -55,7 +52,7 @@ class OrderController extends Controller
 
             $order->orderItems()->createMany($orderItemData);
             // remove shopping cart entries
-            Scard::destroy($scardIds);
+            Scart::destroy($scartIds);
             // @todo: redirect to order detail confirmation page
             // @todo: payment stuff
             // trigger Order Event

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ScardRequest;
 use App\Models\OrderItem;
-use App\Models\Scard;
+use App\Models\Scart;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
  * @package App\Http\Controllers
  * @todo: remove obsolete shopping cart entries
  */
-class ScardController extends Controller
+class ScartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class ScardController extends Controller
      */
     public function index()
     {
-        $data = Scard::where('session_id', session()->getId())->get();
+        $data = Scart::where('session_id', session()->getId())->get();
         $priceTotal = 0;
 
         if($data->count()) {
@@ -30,7 +30,7 @@ class ScardController extends Controller
                 $priceTotal += $item->sum_price;
             });
         }
-        return view('public.scard.index', compact('data','priceTotal'));
+        return view('public.scart.index', compact('data','priceTotal'));
     }
 
     /**
@@ -57,7 +57,7 @@ class ScardController extends Controller
             'session_id'    => $sID,
             'movie_id'      => $id,
         ];
-        $scard = Scard::where($where)->first() ?: new Scard();
+        $scard = Scart::where($where)->first() ?: new Scart();
 
         $data = [
             'session_id'    => $sID,
@@ -70,7 +70,7 @@ class ScardController extends Controller
 
     public function increment($id)
     {
-        $scard = Scard::find($id);
+        $scard = Scart::find($id);
         $scard->quantity++;
         $scard->save();
         return redirect()->back();
@@ -78,7 +78,7 @@ class ScardController extends Controller
 
     public function decrement($id)
     {
-        $scard = Scard::find($id);
+        $scard = Scart::find($id);
         $scard->quantity--;
         $scard->quantity > 0 ? $scard->save() : $scard->delete();
 
@@ -92,7 +92,7 @@ class ScardController extends Controller
      */
     public function destroy($id)
     {
-        Scard::destroy($id);
+        Scart::destroy($id);
         return $this->index();
     }
 }

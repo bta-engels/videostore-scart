@@ -51,7 +51,7 @@
                         @endif
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('scard.index') }}">
+                            <a class="nav-link" href="{{ route('scart.index') }}">
                                 <i class="d-inline-block fas fa-shopping-cart"> </i>
                             </a>
                         </li>

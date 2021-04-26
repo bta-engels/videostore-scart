@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
         'api' => [
-            'driver' => 'jwt', // 'token',
+            'driver' => 'token',
             'provider' => 'users',
-//            'hash' => true,
+            'hash' => false,
         ],
     ],
 
