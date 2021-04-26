@@ -32,7 +32,7 @@
                                             @csrf
                                             <button type="submit" class="btn btn-link m-0 p-0 small" role="link"><i class="fas fa-minus"></i></button>
                                         </form></td>
-                                    <td>@include('components.form.delete', ['entity' => 'scard', 'id' => $item->id])</td>
+                                    <td>@include('components.form.delete', ['entity' => 'scart', 'id' => $item->id])</td>
                                 </tr>
                             @endforeach
                                 <tr><td class="text-center align-middle text-primary font-weight-bold p-0" colspan="8">

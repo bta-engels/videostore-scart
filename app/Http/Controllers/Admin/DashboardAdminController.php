@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class DashboardAdminController extends AdminController
 {
-    public function __invoke()
+    public function show()
     {
         return view('admin.dashboard.show');
     }

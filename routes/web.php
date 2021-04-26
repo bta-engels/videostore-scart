@@ -38,7 +38,7 @@ Route::domain(env('APP_DOMAIN'))
 Route::domain(env('APP_ADMIN_DOMAIN'))
     ->namespace('Admin')
     ->group( function () {
-        Route::get('/', [DashboardAdminController::class])->name('admin.dashboard');
+        Route::get('/', [DashboardAdminController::class, 'show'])->name('admin.dashboard');
 
         Route::get('/movie', [AdminMovieController::class, 'index'])->name('admin-movie.index');
         Route::get('/movie/show/{id}', [AdminMovieController::class, 'show'])->name('admin-movie.show');
