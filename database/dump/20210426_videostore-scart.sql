@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Pro SQL dump
-# Version 4529
+# Version 4541
 #
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 127.0.0.1 (MySQL 5.5.42-log)
-# Datenbank: videostore
-# Erstellt am: 2019-11-24 14:27:31 +0000
+# Host: 127.0.0.1 (MySQL 5.5.5-10.4.18-MariaDB)
+# Datenbank: videostore-scart
+# Erstellt am: 2021-04-26 14:26:24 +0000
 # ************************************************************
 
 
@@ -122,23 +122,6 @@ VALUES
 UNLOCK TABLES;
 
 
-# Export von Tabelle failed_jobs
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `failed_jobs`;
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
-
 # Export von Tabelle images
 # ------------------------------------------------------------
 
@@ -152,7 +135,9 @@ CREATE TABLE `images` (
   `size` int(10) unsigned NOT NULL,
   `width` int(10) unsigned NOT NULL,
   `height` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `movie_id` (`movie_id`),
+  CONSTRAINT `images_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 LOCK TABLES `images` WRITE;
@@ -1179,7 +1164,9 @@ CREATE TABLE `movie` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `movie_title_index` (`title`),
-  KEY `movie_price_index` (`price`)
+  KEY `movie_price_index` (`price`),
+  KEY `author_id` (`author_id`),
+  CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 LOCK TABLES `movie` WRITE;
@@ -2209,15 +2196,6 @@ CREATE TABLE `order` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-LOCK TABLES `order` WRITE;
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-
-INSERT INTO `order` (`id`, `customer_id`, `price_total`, `done`, `done_at`, `created_at`, `updated_at`)
-VALUES
-	(1,1,105,NULL,NULL,'2019-11-14 17:58:13','2019-11-14 17:58:13');
-
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Export von Tabelle order_item
@@ -2235,42 +2213,19 @@ CREATE TABLE `order_item` (
   KEY `order_customer_id_index` (`order_id`),
   KEY `order_movie_id_index` (`movie_id`),
   KEY `order_quanity_index` (`quantity`),
-  KEY `order_price_index` (`price`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-LOCK TABLES `order_item` WRITE;
-/*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
-
-INSERT INTO `order_item` (`id`, `order_id`, `movie_id`, `quantity`, `price`)
-VALUES
-	(1,1,383,2,19.60),
-	(2,1,841,2,46.18),
-	(3,1,818,1,38.98);
-
-/*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Export von Tabelle password_resets
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `password_resets`;
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`(191))
+  KEY `order_price_index` (`price`),
+  CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `order_item_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 
-# Export von Tabelle scard
+# Export von Tabelle scart
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `scard`;
+DROP TABLE IF EXISTS `scart`;
 
-CREATE TABLE `scard` (
+CREATE TABLE `scart` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `session_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `movie_id` int(11) unsigned NOT NULL,
@@ -2281,57 +2236,6 @@ CREATE TABLE `scard` (
   KEY `scard_session_id_index` (`session_id`),
   KEY `scard_movie_id_index` (`movie_id`),
   KEY `scard_quantity_index` (`quantity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-LOCK TABLES `scard` WRITE;
-/*!40000 ALTER TABLE `scard` DISABLE KEYS */;
-
-INSERT INTO `scard` (`id`, `session_id`, `movie_id`, `quantity`, `created_at`, `updated_at`)
-VALUES
-	(4,'iTvtJLny82cYXvz3ftLqxP3WZvDp83UpFJ2sBKGa',383,2,'2019-11-14 17:59:23','2019-11-14 17:59:24');
-
-/*!40000 ALTER TABLE `scard` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Export von Tabelle telescope_entries
-# ------------------------------------------------------------
-
-CREATE TABLE `telescope_entries` (
-  `sequence` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `family_hash` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `should_display_on_index` tinyint(1) NOT NULL DEFAULT '1',
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`sequence`),
-  UNIQUE KEY `telescope_entries_uuid_unique` (`uuid`),
-  KEY `telescope_entries_batch_id_index` (`batch_id`),
-  KEY `telescope_entries_type_should_display_on_index_index` (`type`,`should_display_on_index`),
-  KEY `telescope_entries_family_hash_index` (`family_hash`(191))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
-
-# Export von Tabelle telescope_entries_tags
-# ------------------------------------------------------------
-
-CREATE TABLE `telescope_entries_tags` (
-  `entry_uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  KEY `telescope_entries_tags_entry_uuid_tag_index` (`entry_uuid`,`tag`(191)),
-  KEY `telescope_entries_tags_tag_index` (`tag`(191))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
-
-# Export von Tabelle telescope_monitoring
-# ------------------------------------------------------------
-
-CREATE TABLE `telescope_monitoring` (
-  `tag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 

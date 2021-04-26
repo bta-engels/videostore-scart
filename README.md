@@ -30,6 +30,7 @@ nach dem clonen von Github folgendes per Terminal im Projektverzeichnis ausführ
 
 <VirtualHost *:80>
   ServerName videostore-scart.loc
+  ServerAlias *.videostore-scart.loc
   DocumentRoot "htdocs/videostore-scart/public"
   ErrorLog "logs/videostore-scart-error_log"
   CustomLog "logs/videostore-scart-access_log" common

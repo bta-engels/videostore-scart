@@ -1,7 +1,6 @@
 <?php
-
 return [
-    /**
+    /*
      * Configure the ErrorEmail service
      *
      * - email (bool) - Enable or disable emailing of errors/exceptions
@@ -38,20 +37,19 @@ return [
      *
      * - emailSubject (string) - The subject of email, leave NULL to use default
      *   Default Subject: An Exception has been thrown on APP_URL APP_ENV
-     *
      */
     'ErrorEmail' => [
-        'email' => true,
-        'dontEmail' => [],
-        'throttle' => false,
-        'throttleCacheDriver' => env('CACHE_DRIVER', 'file'),
-        'throttleDurationMinutes' => 5,
-        'dontThrottle' => [],
-        'globalThrottle' => false,
-        'globalThrottleLimit' => 20,
-        'globalThrottleDurationMinutes' => 30,
-        'toEmailAddress' => 'engels@goldenacker.de',
-        'fromEmailAddress' => 'kurs@goldenacker.de',
-        'emailSubject' => 'videostore error'
-    ]
-];
+         'email'                         => true,
+         'dontEmail'                     => [],
+         'throttle'                      => true,
+         'throttleCacheDriver'           => env('CACHE_DRIVER', 'file'),
+         'throttleDurationMinutes'       => 5,
+         'dontThrottle'                  => [],
+         'globalThrottle'                => true,
+         'globalThrottleLimit'           => 20,
+         'globalThrottleDurationMinutes' => 30,
+         'toEmailAddress'                => explode(',', env('EXCEPTION_TO_EMAIL_ADDRESS', null)) ?? null,
+         'fromEmailAddress'              => env('EXCEPTION_FROM_EMAIL_ADDRESS', null),
+         'emailSubject'                  => env('EXCEPTION_EMAIL_SUBJECT', null),
+        ],
+   ];
