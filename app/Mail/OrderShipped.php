@@ -7,9 +7,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MovieOrderShipped extends Mailable implements ShouldQueue
+class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
+
     /**
      * @var Order
      */

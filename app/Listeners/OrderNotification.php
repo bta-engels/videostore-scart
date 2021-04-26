@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\MovieOrdered;
 use App\Mail\MovieOrderShipped;
+use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Mail;
 
 class OrderNotification
@@ -18,7 +19,7 @@ class OrderNotification
     {
         // @TODO: email notification for customer and shop owner
         Mail::to($event->order->customer->email)
-            ->send(new MovieOrderShipped($event->order))
+            ->send(new OrderShipped($event->order))
         ;
     }
 }

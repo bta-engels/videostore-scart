@@ -15,6 +15,9 @@ class MovieOrdered
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    /**
+     * @var Order
+     */
     public $order;
     /**
      * Create a new event instance.
