@@ -65,6 +65,7 @@ class ScartController extends Controller
             'quantity'      => ($scard->quantity > 0) ? $scard->quantity + 1 : 1,
         ];
         $scard->fill($data)->save();
+
         return redirect()->back();
     }
 
