@@ -1,2 +1,2 @@
 
-#RedirectPermanent /videostore-scart http://videostore-scart.loc
+RedirectPermanent /videostore http://videostore.loc

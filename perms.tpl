@@ -1,5 +1,5 @@
 #!/bin/sh
-group=daemon
+group=everybody
 
 sudo chgrp -R $group storage/logs storage/framework storage/app bootstrap/cache database/dumps
 sudo chmod -R ugo+rwx storage/logs storage/framework storage/app bootstrap/cache database/dumps
